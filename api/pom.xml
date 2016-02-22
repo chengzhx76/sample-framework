@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>sample-framework</artifactId>
+    <groupId>com.cheng.framework</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>api</artifactId>
+  <packaging>war</packaging>
+  <name>api Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <!-- JUnit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <!-- SLF4J -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+    <!-- Servlet -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+    </dependency>
+    <!-- Spring Test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+    <!-- API Framework -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>api</finalName>
+    <resources>
+      <!-- Resource Filter -->
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- Compile Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <!-- Test Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+      <!-- War Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <warName>ROOT</warName>
+        </configuration>
+      </plugin>
+      <!-- Tomcat Plugin -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <configuration>
+          <path>/</path>
+          <port>8081</port>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <maven.jdbc.host>localhost</maven.jdbc.host>
+        <maven.jdbc.port>3306</maven.jdbc.port>
+        <maven.jdbc.db>sample</maven.jdbc.db>
+        <maven.jdbc.username>root</maven.jdbc.username>
+        <maven.jdbc.password>root</maven.jdbc.password>
+        <maven.redis.host>localhost</maven.redis.host>
+        <maven.redis.port>6379</maven.redis.port>
+        <maven.redis.password>123456</maven.redis.password>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <maven.jdbc.host>xxx.xxx.xxx.xxx</maven.jdbc.host>
+        <maven.jdbc.port>xxx</maven.jdbc.port>
+        <maven.jdbc.db>xxx</maven.jdbc.db>
+        <maven.jdbc.username>xxx</maven.jdbc.username>
+        <maven.jdbc.password>xxx</maven.jdbc.password>
+        <maven.redis.host>xxx</maven.redis.host>
+        <maven.redis.port>xxx</maven.redis.port>
+        <maven.redis.password>xxx</maven.redis.password>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <maven.jdbc.host>xxx.xxx.xxx.xxx</maven.jdbc.host>
+        <maven.jdbc.port>xxx</maven.jdbc.port>
+        <maven.jdbc.db>xxx</maven.jdbc.db>
+        <maven.jdbc.username>xxx</maven.jdbc.username>
+        <maven.jdbc.password>xxx</maven.jdbc.password>
+        <maven.redis.host>xxx</maven.redis.host>
+        <maven.redis.port>xxx</maven.redis.port>
+        <maven.redis.password>xxx</maven.redis.password>
+      </properties>
+    </profile>
+  </profiles>
+</project>
