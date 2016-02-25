@@ -1,12 +1,12 @@
 package com.cheng.framework.api.controller;
 
-import com.xxx.api.bean.PagingParam;
-import com.xxx.api.bean.PagingResult;
-import com.xxx.api.bean.Response;
-import com.xxx.api.jdbc.paging.Paging;
-import com.xxx.sample.api.param.AdvertiserParam;
-import com.xxx.sample.api.result.AdvertiserResult;
-import com.xxx.sample.api.service.AdvertiserService;
+import com.cheng.framework.core.bean.PagingParam;
+import com.cheng.framework.core.bean.PagingResult;
+import com.cheng.framework.core.bean.Response;
+import com.cheng.framework.core.jdbc.paging.Paging;
+import com.cheng.framework.api.param.AdvertiserParam;
+import com.cheng.framework.api.result.AdvertiserResult;
+import com.cheng.framework.api.service.AdvertiserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +25,7 @@ public class AdvertiserController {
     private AdvertiserService advertiserService;
 
     @RequestMapping(value = "/advertisers", method = RequestMethod.GET)
-    public Response listAdvertiser(
-        PagingParam pagingParam
-    ) {
+    public Response listAdvertiser(PagingParam pagingParam) {
         int pageNumber = pagingParam.getPagingNumber();
         int pageSize = pagingParam.getPageSize();
         String whereCondition = pagingParam.getWhereCondition("advertiser_name");
@@ -37,18 +35,13 @@ public class AdvertiserController {
     }
 
     @RequestMapping(value = "/advertiser/{id}", method = RequestMethod.GET)
-    public Response getAdvertiser(
-        @PathVariable("id") String advertiserId
-    ) {
+    public Response getAdvertiser(@PathVariable("id") String advertiserId) {
         AdvertiserResult advertiserResult = advertiserService.getAdvertiser(advertiserId);
         return new Response().success(advertiserResult);
     }
 
     @RequestMapping(value = "/advertiser/{id}", method = RequestMethod.PUT)
-    public Response updateAdvertiser(
-        @PathVariable("id") String advertiserId,
-        @RequestBody @Valid AdvertiserParam advertiserParam
-    ) {
+    public Response updateAdvertiser(@PathVariable("id") String advertiserId, @RequestBody @Valid AdvertiserParam advertiserParam) {
         String advertiserName = advertiserParam.getAdvertiserName();
         String description = advertiserParam.getDescription();
         advertiserService.updateAdvertiser(advertiserId, advertiserName, description);
@@ -56,17 +49,13 @@ public class AdvertiserController {
     }
 
     @RequestMapping(value = "/advertiser/{id}", method = RequestMethod.DELETE)
-    public Response deleteAdvertiser(
-        @PathVariable("id") String advertiserId
-    ) {
+    public Response deleteAdvertiser(@PathVariable("id") String advertiserId) {
         advertiserService.deleteAdvertiser(advertiserId);
         return new Response().success();
     }
 
     @RequestMapping(value = "/advertiser", method = RequestMethod.POST)
-    public Response createAdvertiser(
-        @RequestBody @Valid AdvertiserParam advertiserParam
-    ) {
+    public Response createAdvertiser(@RequestBody @Valid AdvertiserParam advertiserParam) {
         String advertiserName = advertiserParam.getAdvertiserName();
         String description = advertiserParam.getDescription();
         advertiserService.createAdvertiser(advertiserName, description);

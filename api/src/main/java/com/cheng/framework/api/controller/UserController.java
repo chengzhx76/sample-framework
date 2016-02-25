@@ -1,11 +1,11 @@
 package com.cheng.framework.api.controller;
 
-import com.xxx.api.bean.Response;
-import com.xxx.api.security.IgnoreSecurity;
-import com.xxx.api.security.TokenManager;
-import com.xxx.sample.api.bean.UserBean;
-import com.xxx.sample.api.param.LoginParam;
-import com.xxx.sample.api.service.UserService;
+import com.cheng.framework.api.bean.UserBean;
+import com.cheng.framework.api.param.LoginParam;
+import com.cheng.framework.api.service.UserService;
+import com.cheng.framework.core.bean.Response;
+import com.cheng.framework.core.security.IgnoreSecurity;
+import com.cheng.framework.core.security.TokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,10 +21,8 @@ import javax.validation.Valid;
  */
 @RestController
 public class UserController {
-
     @Autowired
     private UserService userService;
-
     @Autowired
     private TokenManager tokenManager;
 
@@ -33,9 +31,7 @@ public class UserController {
      */
     @IgnoreSecurity
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Response login(
-        @Valid LoginParam param
-    ) {
+    public Response login(@Valid LoginParam param) {
         // 获取登录信息
         String username = param.getUsername();
         String password = param.getPassword();

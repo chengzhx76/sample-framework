@@ -1,6 +1,6 @@
 package com.cheng.framework.api.param;
 
-import com.xxx.api.validation.NotEmpty;
+import com.cheng.framework.core.validation.NotEmpty;
 
 /**
  * 登录参数对象

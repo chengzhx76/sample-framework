@@ -1,12 +1,12 @@
 package com.cheng.framework.api.service;
 
-import com.xxx.api.jdbc.ServiceException;
-import com.xxx.api.jdbc.dao.DataAccessor;
-import com.xxx.api.jdbc.id.IdGenerator;
-import com.xxx.api.jdbc.paging.Paging;
-import com.xxx.api.util.DateUtil;
-import com.xxx.sample.api.constant.Message;
-import com.xxx.sample.api.result.AdvertiserResult;
+import com.cheng.framework.api.constant.Message;
+import com.cheng.framework.api.result.AdvertiserResult;
+import com.cheng.framework.core.jdbc.ServiceException;
+import com.cheng.framework.core.jdbc.dao.DataAccessor;
+import com.cheng.framework.core.jdbc.id.IdGenerator;
+import com.cheng.framework.core.jdbc.paging.Paging;
+import com.cheng.framework.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
